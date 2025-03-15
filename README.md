@@ -42,9 +42,9 @@ docker run --rm \
 3. Executar os seguintes comandos:
 ```shell
 ./vendor/bin/sail up -d
-./vendor/bin/sail artisan key:generate
-./vendor/bin/sail artisan migrate
-./vendor/bin/sail artisan db:seed
+.php artisan key:generate
+.php artisan migrate
+.php artisan db:seed
 ```
 
 4. A API deve estar disponível em [http://localhost](http://localhost).
@@ -55,14 +55,8 @@ docker run --rm \
 
 5. Gerar Swagger (Usar apenas em desenvolvimento) ([WEB](http://localhost/web/documentation)) ([ADMIN](http://localhost/admin/documentation))
 ```bash
-./vendor/bin/sail l5-swagger:generate --all
+php l5-swagger:generate --all
 ```
-
-## 📦 Desenvolvimento
-
-Acesse a aplicação na url: http://localhost
-
-
 
 ## Tests
 

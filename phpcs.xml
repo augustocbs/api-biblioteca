@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="CustomRuleset">
+    <description>My custom coding standard</description>
+    <file>./app</file>
+    <file>./tests</file>
+    <rule ref="PSR12">
+        <!-- Add custom rules or exclusions here -->
+    </rule>
+</ruleset>

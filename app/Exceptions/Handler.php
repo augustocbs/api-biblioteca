@@ -2,17 +2,12 @@
 
 namespace App\Exceptions;
 
-use App\Exceptions\Renders\AuthenticationExceptionRender;
-use App\Exceptions\Renders\AuthorizationExceptionRender;
-use App\Exceptions\Renders\HttpExceptionRender;
-use App\Exceptions\Renders\NotFoundHttpExceptionRender;
-use App\Exceptions\Renders\ValidationExceptionRender;
-use App\Exceptions\Reports\ThrowableReport;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -54,18 +49,38 @@ class Handler extends ExceptionHandler
         ValidationException::class,
     ];
 
-    /**
-     * Register the exception handling callbacks for the application.
-     *
-     * @return void
-     */
-    public function register()
+    public function render($request, \Throwable $exception)
     {
-        // $this->reportable(new ThrowableReport($this));
-        // $this->renderable(new AuthenticationExceptionRender());
-        // $this->renderable(new AuthorizationExceptionRender());
-        // $this->renderable(new NotFoundHttpExceptionRender());
-        // $this->renderable(new ValidationExceptionRender());
-        // $this->renderable(new HttpExceptionRender());
+        if (($request->is('web/*') || $request->is('admin/*')) && $exception instanceof ValidationException) {
+            $response = [
+                'errors' => [],
+            ];
+
+            foreach ($exception->errors() as $errors) {
+                foreach ($errors as $error) {
+                    $response['errors'][] = $error;
+                }
+            }
+
+            return response()->json($response, 400);
+        }
+
+        if ($request->is('admin/*') && $exception instanceof UnauthorizedException) {
+            return response()->json([
+                'errors' => ['Sua conta não tem permissão para acessar esse recurso.'],
+            ], 403);
+        }
+
+        if ($request->is('web/*') || $request->is('admin/*')) {
+            return response()->json([
+                'errors' => ['Erro interno no servidor.'],
+                'exception' => get_class($exception),
+                'message' => $exception->getMessage(),
+                'file' => $exception->getFile(),
+                'line' => $exception->getLine(),
+            ], 500);
+        }
+
+        return parent::render($request, $exception);
     }
 }

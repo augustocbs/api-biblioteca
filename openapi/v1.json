@@ -1,0 +1,127 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": ":project_name",
+    "version": "1.0",
+    "contact": {
+      "name": "3 Sided Cube",
+      "url": "https://3sidedcube.com",
+      "email": "server@3sidedcube.com"
+    },
+    "description": "### About\n\nThe Open API documentation for the :project_name API."
+  },
+  "servers": [
+    {
+      "url": ":server_url/v1"
+    }
+  ],
+  "paths": {},
+  "components": {
+    "schemas": {
+      "ValidationError": {
+        "title": "ValidationError",
+        "type": "object",
+        "properties": {
+          "parameter": {
+            "type": "string",
+            "example": "name",
+            "description": "The parameter that failed the validation."
+          },
+          "code": {
+            "type": "string",
+            "example": "REQUIRED",
+            "description": "The rule that failed."
+          },
+          "message": {
+            "type": "string",
+            "example": "The name field is required.",
+            "description": "A human readable validation error message."
+          }
+        },
+        "required": [
+          "parameter",
+          "code",
+          "message"
+        ]
+      }
+    },
+    "responses": {
+      "ApiErrorResponse": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "example": "unauthenticated",
+                      "description": "The unique error code."
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "User not authenticated.",
+                      "description": "A human readable error message."
+                    }
+                  }
+                }
+              },
+              "required": [
+                "error"
+              ]
+            }
+          }
+        }
+      },
+      "ValidationErrorResponse": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message",
+                    "validation_errors"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "example": "validation_error",
+                      "description": "The unique error code."
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Validation failed.",
+                      "description": "A human readable error message."
+                    },
+                    "validation_errors": {
+                      "type": "array",
+                      "description": "The validation errors.",
+                      "items": {
+                        "$ref": "#/components/schemas/ValidationError"
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "error"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

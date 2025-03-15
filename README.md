@@ -60,8 +60,8 @@ php l5-swagger:generate --all
 
 ## Tests
 
-Você pode executar toda a suíte de testes executando o seguinte comando:
+Você pode executar o seguinte comando para testar a qualidade do código:
 
 ```shell
-make test
+composer lint
 ```

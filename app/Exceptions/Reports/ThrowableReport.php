@@ -38,7 +38,7 @@ class ThrowableReport
                 throw $e;
             }
 
-            return ApiErrorResponse::create('internal_server_error', 'Internal Server Error', 500);
+            // return ApiErrorResponse::create('internal_server_error', 'Internal Server Error', 500);
         }
     }
 }

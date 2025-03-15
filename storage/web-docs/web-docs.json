@@ -1,0 +1,68 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Swagger - Biblioteca Web",
+        "description": "",
+        "contact": {
+            "email": "augustoc.bsilveira@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/web",
+            "description": "Localhost"
+        }
+    ],
+    "paths": {
+        "/home": {
+            "get": {
+                "tags": [
+                    "Home"
+                ],
+                "summary": "Handle the incoming request",
+                "description": "Este endpoint retorna uma resposta JSON vazia.",
+                "operationId": "cee05bf1cb871ee29791db032e0ba1be",
+                "responses": {
+                    "200": {
+                        "description": "Resposta JSON vazia.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "example": [
+                                                "Erro interno do servidor."
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Home",
+            "description": "Tela Inicial"
+        }
+    ]
+}

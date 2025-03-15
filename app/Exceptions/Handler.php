@@ -16,7 +16,6 @@ use Illuminate\Validation\ValidationException;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use ThreeSidedCube\LaravelApiErrors\Exceptions\ApiErrorException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,7 +45,6 @@ class Handler extends ExceptionHandler
      * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
-        ApiErrorException::class,
         AuthenticationException::class,
         AuthorizationException::class,
         CommandNotFoundException::class,
@@ -63,11 +61,11 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(new ThrowableReport($this));
-        $this->renderable(new AuthenticationExceptionRender());
-        $this->renderable(new AuthorizationExceptionRender());
-        $this->renderable(new NotFoundHttpExceptionRender());
-        $this->renderable(new ValidationExceptionRender());
-        $this->renderable(new HttpExceptionRender());
+        // $this->reportable(new ThrowableReport($this));
+        // $this->renderable(new AuthenticationExceptionRender());
+        // $this->renderable(new AuthorizationExceptionRender());
+        // $this->renderable(new NotFoundHttpExceptionRender());
+        // $this->renderable(new ValidationExceptionRender());
+        // $this->renderable(new HttpExceptionRender());
     }
 }

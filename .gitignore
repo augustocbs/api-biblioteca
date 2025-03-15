@@ -7,7 +7,7 @@
 
 /storage/*.key
 /public/mix-manifest.json
-/public/vendor/*
+/public/vendor
 
 .env
 .env.backup
@@ -19,3 +19,5 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.helper
+.lock

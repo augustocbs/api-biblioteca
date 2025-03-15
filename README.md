@@ -1,87 +1,35 @@
-<p align="center">
-    <a href="https://3sidedcube.com" target="_blank">
-        <img src="https://3sidedcube.com/app/themes/tsc-2018/img/footer/logo-black.png" width="400" alt="3 Sided Cube">
-    </a>
-</p>
+# API - Biblioteca
 
-# :project_name
+Aplicativo feito em Laravel
 
-<!--delete-->
----
-This repository can be used to scaffold new Laravel APIs. Follow these steps to get started: 
+## 🚀 Começando
 
-1. Run the following command in your terminal:
-```shell
-composer create-project 3sidedcube/laravel-api-template project-name -s dev
+Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
+
+Consulte **Instalação e configuração** para saber como implantar o projeto.
+
+### 📋 Pré-requisitos
+
+De que coisas você precisa para instalar o software e como instalá-lo?
+
 ```
-2. Next configure your Laravel services by running:
-```shell
-php artisan sail:install
+Composer
+PHP (8.3 ou superior)
+Docker (Apenas desenvolvimento)
 ```
-3. Update the `bitbucket-pipelines.yml` file to use any additional services 
-4. Ensure that the provisioning and deployment information is correct
-5. Create a Backend API confluence page on the project space for writing helpful documentation (remember to update the README)
-6. Replace any references to project_name with your project name. You will need to update the following files:
-   1. `composer.json` (name)
-   2. README.md (title)
-   3. Environment variables (`.env`, `.env.example`, `.env.pipelines`)
-   4. OpenAPI (`v1.json`)
-   5. Changelog
-7. Update the environment information below with the correct URLs
----
-<!--/delete-->
 
-This is where your description should go. Limit it to a paragraph or two.
+## Desenvolvimento Local
 
-## Environments
+Este projeto utiliza o Laravel Sail para desenvolvimento local, que usa [Docker](https://www.docker.com/get-started). Você precisará garantir que o Docker esteja instalado e em execução na sua máquina.
 
-There are several environments available for this project.
+### Configuração inicial
 
-### Production
-
-[https://project-api.com](https://project-api.com)
-
-This environment should only be used for production builds. Changes to the API should have been tested before they are
-deployed to this environment.
-
-### Staging
-
-[https://project-api.com](https://project-api.com)
-
-Once the API has completed internal testing, it should be deployed to this environment. This will then be used by the
-client during UAT.
-
-> Note: Please ensure that UAT always used this environment so that bug fixes and changes can be deployed to test
-> whilst UAT is ongoing.
-
-### Test
-
-[https://project-api.com](https://project-api.com)
-
-The test environment should be used for testing the API internally All mobile builds that are built for the testing
-team should also point at this environment.
-
-### Development
-
-[https://project-api.com](https://project-api.com)
-
-This environment is available for mobile developers or frontend developers to use when developing new features locally.
-It is helpful to have the environment so that developers can fix any breaking changes before the API changes get
-deployed to the test environment.
-
-## Local Development
-
-This project uses Laravel Sail for local development which uses [Docker](https://www.docker.com/get-started). You will
-need to ensure that you have Docker installed and running on your machine.
-
-### First time setup
-
-1. Copy the example environment file:
+1. Copiar o arquivo de exemplo do ambiente:
 ```shell
 cp .env.example .env
 ```
 
-2. Install Composer dependencies:
+2. Instalar as dependências do Composer:
 ```shell
 docker run --rm \
     -u "$(id -u):$(id -g)" \
@@ -91,7 +39,7 @@ docker run --rm \
     composer install --ignore-platform-reqs
 ```
 
-3. Run the following commands:
+3. Executar os seguintes comandos:
 ```shell
 ./vendor/bin/sail up -d
 ./vendor/bin/sail artisan key:generate
@@ -99,45 +47,26 @@ docker run --rm \
 ./vendor/bin/sail artisan db:seed
 ```
 
-4. The API should now be available at [http://localhost](http://localhost).
+4. A API deve estar disponível em [http://localhost](http://localhost).
 
-### Stopping the project
+#### Swagger
 
-1. To stop the project docker containers, simply run the following command:
-```shell
-./vendor/bin/sail down
+[L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger)
+
+5. Gerar Swagger (Usar apenas em desenvolvimento) ([WEB](http://localhost/web/documentation)) ([ADMIN](http://localhost/admin/documentation))
+```bash
+./vendor/bin/sail l5-swagger:generate --all
 ```
 
-### Starting the project again
+## 📦 Desenvolvimento
 
-1. To start the project docker containers after you've completed the first time use, simply run the following command:
-```shell
-./vendor/bin/sail up -d
-```
+Acesse a aplicação na url: http://localhost
 
-### Gotchas
 
-Here are some helpful tips if you are having issues with this project:
-
-## Provisioning
-
-Server provisioning is handled by [Laravel Forge](https://forge.laravel.com).
-
-## Deployments
-
-To deploy this project, login to [Envoyer](https://envoyer.io) and click deploy on the corresponding project.
-
-## Documentation
-
-All documentation can be found under the following [page]() in confluence.
-
-## Logging
-
-We use [Sentry](https://sentry.io) for keeping track of logs across the various environments.
 
 ## Tests
 
-You can run the full test suite by running the following command:
+Você pode executar toda a suíte de testes executando o seguinte comando:
 
 ```shell
 make test

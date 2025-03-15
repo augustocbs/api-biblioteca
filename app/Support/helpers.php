@@ -6,8 +6,8 @@ if (! function_exists('current_route_is_api_route')) {
      *
      * @return bool
      */
-    function current_route_is_api_route(): bool
+    function current_route_is_api_route()
     {
-        return str_starts_with(request()->path(), 'v1');
+        // return str_starts_with(request()->path(), 'v1');
     }
 }

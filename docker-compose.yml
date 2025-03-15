@@ -62,6 +62,16 @@ services:
             - 8080:80
         networks:
             - biblioteca-network
+    mailhog:
+        image: mailhog/mailhog
+        container_name: biblioteca_mailhog
+        logging:
+            driver: 'none'
+        ports:
+            - 1025:1025
+            - 8025:8025
+        networks:
+            - biblioteca-network
 networks:
     biblioteca-network:
         driver: bridge

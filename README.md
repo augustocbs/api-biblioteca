@@ -42,9 +42,9 @@ docker run --rm \
 3. Executar os seguintes comandos:
 ```shell
 ./vendor/bin/sail up -d
-.php artisan key:generate
-.php artisan migrate
-.php artisan db:seed
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
 ```
 
 4. A API deve estar disponível em [http://localhost](http://localhost).

@@ -72,6 +72,7 @@ return [
 
                 'annotations' => [
                     base_path('app/Http/Controllers/Web'),
+                    base_path('app/Http/Requests/Web'),
                 ],
 
             ],

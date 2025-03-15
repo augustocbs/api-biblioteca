@@ -55,7 +55,7 @@ php artisan db:seed
 
 5. Gerar Swagger (Usar apenas em desenvolvimento) ([WEB](http://localhost/web/documentation)) ([ADMIN](http://localhost/admin/documentation))
 ```bash
-php l5-swagger:generate --all
+php artisan l5-swagger:generate --all
 ```
 
 ## Tests

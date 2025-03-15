@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, \Throwable $exception)
     {
-        if (($request->is('web/*') || $request->is('admin/*')) && $exception instanceof ValidationException) {
+        if ($request->is('web/*') && $exception instanceof ValidationException) {
             $response = [
                 'errors' => [],
             ];
@@ -65,13 +65,13 @@ class Handler extends ExceptionHandler
             return response()->json($response, 400);
         }
 
-        if ($request->is('admin/*') && $exception instanceof UnauthorizedException) {
+        if ($request->is('web/*') && $exception instanceof UnauthorizedException) {
             return response()->json([
                 'errors' => ['Sua conta não tem permissão para acessar esse recurso.'],
             ], 403);
         }
 
-        if ($request->is('web/*') || $request->is('admin/*')) {
+        if ($request->is('web/*')) {
             return response()->json([
                 'errors' => ['Erro interno no servidor.'],
                 'exception' => get_class($exception),
